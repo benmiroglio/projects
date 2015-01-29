@@ -1,9 +1,10 @@
-//repush
-
-/*
+/**
  * @author Ben Miroglio
  * run java NBody 157788000.0 25000.0 data/<file>.txt at command line
  */
+
+
+
 public class NBody {
 	public static void main(String[] args) {
 		double T = Double.parseDouble(args[0]);
