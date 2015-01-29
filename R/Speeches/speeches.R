@@ -61,34 +61,6 @@ for(i in 1:n.speeches){
   
 }
 
-#### Word Vectors 
-# For each speech we are going to collect the following information:
-# -- # of sentences
-# -- # of words
-# -- # of characters
-# 
-# We will also create a word vector for every speech.  The word vector 
-# should have one entry for every word that appears in *any* speech
-# and the value of the entry should be the number of times the word appears.
-# The entries should be in alphabetical order.  
-# Once all the word vectors are in place we will combine them into a matrix
-# with one row for every word that appears and one column for every speech.
-#
-# Do this in a few steps:
-# Write a function, [speechToWords], that takes a character vector and 
-# creates a word vector of all the words in the input variable.  
-# Input  : sentences, a character string
-# Output : words, a character vector where each element is one word 
-
-# In other words it should take a string of text and:
-# -- cut it into words
-# -- remove all punctuation marks (anything in :punct:)
-# -- make all characters lower case
-# -- Remove the phrase "Applause."
-# -- use the function wordStem() from the package SnowballC to 
-#    get the stem of each work
-# -- finally, remove all empty words, i.e. strings that match "" 
-#    both BEFORE running wordStem() *and* AFTER
 
 #### The function wordStem() returns the "stem" of each word, e.g.:
 #> wordStem(c("national", "nationalistic", "nation"))
@@ -212,11 +184,12 @@ plot(speechesDF$yr, (unlist(speechesDF$words)
                      /unlist(speechesDF$sent)), 
                      xlab = 'Year', 
                      ylab = 'avg sentence length')
-# your plot statements below:
 
-# One clear observation i made was that sentence length has been consistently decreaseing over time
-# while sentence quantity understandably has increased consistently over time. Also there is a lot more
-# variation in word length the past century whereas from 1800-1900 the avg word length is fairly consistent.
+
+
+
+
+#### misc exploration #########
 bogus <- c('the', 'of', 'and', 'this' , 'our', 'that', 'which', 'a', 
            'for', 'that', "to", "be", 'in', 'by', 'it', 'there', 'on', 'or', 'but', 
            'have', 'would', 'from', 'i', 'such', 'will', 'than', 'their', 'with', 'were', 
