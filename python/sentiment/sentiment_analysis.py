@@ -22,6 +22,10 @@ class Sentiment:
         self.count_words()
         print("Average sentiment for {0}: {1}".format(self.title,
                                                       self.average_sentiment()))
+
+
+    ## read in sentiment dictionary and form dictionary attribute in the form word: value
+    ## after standardizing text to include only ascii characters
     def read_sentiments(self):
         words = csv.reader(open(self.sentiment_values))
         for i in words:
@@ -31,7 +35,9 @@ class Sentiment:
             if i not in ascii_letters:
                 self.text = self.text.replace(i, ' ')
         self.word_lst = self.text.split()
-        
+     
+
+    ## go through each word in the text and store its sentiment value if it exists    
     def get_sentiments(self):
         words = self.word_lst[:]
         keys = self.sentiment_dic
