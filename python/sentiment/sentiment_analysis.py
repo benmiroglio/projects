@@ -6,7 +6,7 @@ from string import ascii_letters
 
 class Sentiment:
     """Inputs:
-       1. text file
+       1. .txt file
        2. two column csv: word | sentiment """
 
     def __init__(self, text_file, sentiment_values='sentiments_dictionary.csv'):
