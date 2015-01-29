@@ -1,4 +1,8 @@
 //repush
+
+/*
+ * @author Ben Miroglio
+ */
 public class Planet {
 
 	public double x;
