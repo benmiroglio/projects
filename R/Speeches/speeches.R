@@ -211,7 +211,7 @@ TOPR <- rev(sort(topR[unique(names(topR))]))
 
 
 
-# get a list of vectors containing the top20 must used words by decade
+# get a list of vectors containing the top20 most used words by century
 century.trends <- list()
 yrs <- c(1700, 1800, 1900, 2000)
 j <- 1
