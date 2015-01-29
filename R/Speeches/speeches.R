@@ -8,7 +8,7 @@ setwd('~/src/stat133/hw7')
 ## Shannon-Jensen divergence between two word vectors.
 ## The function is the file computeSJDistance.R, please *keep* the source
 ## statement in the file:
-source("computeSJDistance.R")
+#source("computeSJDistance.R")
 
 ######################################################
 
