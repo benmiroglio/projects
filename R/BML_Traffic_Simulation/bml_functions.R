@@ -27,15 +27,6 @@ bml.init <- function(r, c, p){
 }
 
 
-
-#### Function to move the system one step (east and north)
-## Input : a matrix [m] of the same type as the output from bml.init()
-## Output : TWO variables, the updated [m] and a logical variable
-## [grid.new] which should be TRUE if the system changed, FALSE otherwise.
-
-
-
-
 #move red cars east
 red.step <- function(row){
   ones<-rev(which(row==1))
