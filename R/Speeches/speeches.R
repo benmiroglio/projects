@@ -3,12 +3,8 @@
 
 
 library("SnowballC")
-setwd('~/src/stat133/hw7')
-## We provide a function [ computeSJDistance() ] to calculate the 
-## Shannon-Jensen divergence between two word vectors.
-## The function is the file computeSJDistance.R, please *keep* the source
-## statement in the file:
-#source("computeSJDistance.R")
+
+
 
 ######################################################
 
