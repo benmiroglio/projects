@@ -12,7 +12,7 @@ class Sentiment:
        1. .txt file
        2. two column csv: word | sentiment 
 
-       Prints out average word sentiment of passage,
+       Prints out average word sentiment of passage upon assignment,
        creating useful lists and dictionaries in the process
 
        """
