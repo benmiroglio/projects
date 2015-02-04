@@ -2,7 +2,6 @@ import csv
 from string import ascii_letters
 
 
-# still need to parse words so it is only lower-case ascii letters
 
 class Sentiment:
     """Inputs:
