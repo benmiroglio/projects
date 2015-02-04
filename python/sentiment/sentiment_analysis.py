@@ -3,10 +3,19 @@ from string import ascii_letters
 
 
 
+###################################################
+########### SENTIMENT ANALYSIS CLASS ##############
+###################################################
+
 class Sentiment:
     """Inputs:
        1. .txt file
-       2. two column csv: word | sentiment """
+       2. two column csv: word | sentiment 
+
+       Prints out average word sentiment of passage,
+       creating useful lists and dictionaries in the process
+
+       """
 
     def __init__(self, text_file, sentiment_values='sentiments_dictionary.csv'):
         self.sentiment_values = sentiment_values
