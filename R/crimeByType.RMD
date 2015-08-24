@@ -1,0 +1,76 @@
+---
+title: "Crime in San Francisco"
+author: "Ben Miroglio"
+date: "August 20, 2015"
+output: html_document
+---
+Both of the maps below are using the same crime data, spanning from January 1st, 2015 to March 3rd, 2015. The data was acquired by a simple HTTP GET request from http://sanfrancisco.crimespotting.org and can be downloaded via [this link](http://sanfrancisco.crimespotting.org/crime-data?format=csv&dtend=2015-03-17T23:59:59-07:00&lat=37.760&dtstart=2015-01-01T05:40:52-07:00&lon=-122.438&types=AA,Mu,Ro,SA,DP,Na,Al,Pr,Th,VT,Va,Bu,Ar&count=1000000) (Note: by clicking the link a download will automatically begin).
+
+
+
+Note the panel in the upper right corner of the map that allows you to toggle for crime type and map type. 
+
+```{r,fig.height=8, fig.width=11, echo=F, message=FALSE, warning=FALSE}
+setwd('~/src/crimeSF/')
+library('leaflet')
+
+
+d <- read.csv('sfCrime.csv')[c("Crime.Type", "Latitude", "Longitude", "Description", "Date..Time")]
+crimes <- levels(as.factor(d$Crime.Type))
+cols <- rainbow(length(crimes))
+pal = colorFactor(cols, crimes)
+
+m <- leaflet(d) %>% 
+     addTiles() %>% 
+     addProviderTiles("Stamen.Toner", group = "Toner") %>%
+     addProviderTiles("Stamen.Terrain", group = "Terrain") %>%
+     addCircleMarkers(lat = as.numeric(d[,2]), 
+                      lng = as.numeric(d[,3]), 
+                      popup = paste(d[,4], d[,5], sep = '<dd>'), 
+                      color = ~pal(Crime.Type), 
+                      stroke = F, weight = 2, radius=8, group = d[,1],
+                      opacity = 50,
+                      #clusterOptions = markerClusterOptions()
+                      ) %>%
+  addLegend('bottomright', pal=pal, values=crimes, title = 'Type of Crime') %>%
+     
+    addLayersControl(
+      baseGroups = c("Toner", "Terrain","OSM (default)"),
+      overlayGroups = c(crimes),
+      options = layersControlOptions(collapsed = F)
+  ) %>% hideGroup(crimes[2:length(crimes)])
+m
+```
+\vspace{20mm}
+--------------------------------------
+### The Plot above can get cluttered at times, here's a broader view that allows you to look at crimes by neighborhood, becoming more specific as you zoom. 
+
+\vspace{10mm)}
+
+
+```{r,fig.height=8, fig.width=11, echo=F, message=FALSE, warning=FALSE}
+
+crimes <- levels(as.factor(d$Crime.Type))
+cols <- rainbow(length(crimes))
+pal = colorFactor(cols, crimes)
+
+m <- leaflet(d) %>% 
+     addTiles() %>% 
+     addProviderTiles("Stamen.Toner", group = "Toner") %>%
+     addProviderTiles("Stamen.Terrain", group = "Terrain") %>%
+     addCircleMarkers(lat = as.numeric(d[,2]), 
+                      lng = as.numeric(d[,3]), 
+                      popup = paste(d[,4], d[,5], sep = '<dd>'), 
+                      color = ~pal(Crime.Type), 
+                      stroke = T, weight = 2, radius=8, group = d[,1],
+                      opacity = 20,
+                      clusterOptions = markerClusterOptions()
+                      ) %>%
+    addLegend('bottomleft', pal=pal, values=crimes, title = 'Type of Crime') %>%
+     
+    addLayersControl(
+      baseGroups = c("OSM (default)","Toner", "Terrain"),
+      options = layersControlOptions(collapsed = T)
+  )
+m 
+```
