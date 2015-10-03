@@ -11,11 +11,29 @@ Both of the maps below are using the same crime data, spanning from January 1st,
 Note the panel in the upper right corner of the map that allows you to toggle for crime type and map type. 
 
 ```{r,fig.height=8, fig.width=11, echo=F, message=FALSE, warning=FALSE}
-setwd('~/src/crimeSF/')
 library('leaflet')
+library('RCurl')
+
+DTSTART <- '2015-01-01T05:40:52-07:00'
+DTEND   <- '2015-03-17T23:59:59-07:00'
+LAT     <- '37.760'
+LON     <- '-122.438'
+TYPES   <- 'AA,Mu,Ro,SA,DP,Na,Al,Pr,Th,VT,Va,Bu,Ar'
+COUNT   <- '1000000'
 
 
-d <- read.csv('sfCrime.csv')[c("Crime.Type", "Latitude", "Longitude", "Description", "Date..Time")]
+
+url <- getURL(paste('http://sanfrancisco.crimespotting.org/crime-data?',
+                         'format=csv&',
+                         'dtstart=', DTSTART, '&',
+                         'dtend=', DTEND, '&', 
+                         'lat=', LAT, '&',
+                         'lon=', LON, '&',
+                         'types=', TYPES, '&',
+                         'count=', COUNT, sep = ''))
+
+d <- read.table(textConnection(url), sep=',',header=T)[c("Crime.Type", "Latitude", "Longitude", "Description", "Date..Time")]
+
 crimes <- levels(as.factor(d$Crime.Type))
 cols <- rainbow(length(crimes))
 pal = colorFactor(cols, crimes)
