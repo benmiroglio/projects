@@ -57,7 +57,7 @@ class Sentiment:
         self.value_lst = [i for i in words if i]
 
     def average_sentiment(self):
-        return sum(self.value_lst)/ len(self.value_lst)
+        return sum(self.value_lst)#/ len(self.value_lst)
 
     def count_words(self):
         for word in self.word_lst:
